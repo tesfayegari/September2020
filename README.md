@@ -6,7 +6,7 @@
 - Paragraph  p
 - new line called break   br
 - Link       a attribute href
-- Image img
+- Image img with attribute of src
 - Bullet and Numbers ul-li ol-li
 - Tables table, tr, th,td
 - Block and Inline Content div, span
