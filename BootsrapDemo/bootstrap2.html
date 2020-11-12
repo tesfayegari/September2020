@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap Demo 2</title>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <!-- Popper JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <style>
+    /* Make the image fully responsive */
+    .carousel-inner img {
+      width: 100%;
+      height: 100%;
+    }
+    </style>
+</head>
+
+<body>
+
+  <div id="demo" class="carousel slide" data-ride="carousel">
+    <ul class="carousel-indicators">
+      <li data-target="#demo" data-slide-to="0" class="active"></li>
+      <li data-target="#demo" data-slide-to="1"></li>
+      <li data-target="#demo" data-slide-to="2"></li>
+    </ul>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="https://www.w3schools.com/bootstrap4/la.jpg" alt="Los Angeles" width="1100" height="500">
+        <div class="carousel-caption">
+          <h3>Los Angeles</h3>
+          <p>We had such a great time in LA!</p>
+        </div>   
+      </div>
+      <div class="carousel-item">
+        <img src="https://www.w3schools.com/bootstrap4/chicago.jpg" alt="Chicago" width="1100" height="500">
+        <div class="carousel-caption">
+          <h3>Chicago</h3>
+          <p>Thank you, Chicago!</p>
+        </div>   
+      </div>
+      <div class="carousel-item">
+        <img src="https://www.w3schools.com/bootstrap4/ny.jpg" alt="New York" width="1100" height="500">
+        <div class="carousel-caption">
+          <h3>New York</h3>
+          <p>We love the Big Apple!</p>
+        </div>   
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#demo" data-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </a>
+    <a class="carousel-control-next" href="#demo" data-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </a>
+  </div>
+
+  <div class="container">
+    <div class="btn-group">
+      <button type="button" class="btn btn-dark">Apple</button>
+      <button type="button" class="btn btn-dark">Samsung</button>
+      <button type="button" class="btn btn-dark">Sony</button>
+    </div>
+    <h1>This is heading</h1>
+    <div class="alert alert-success">
+      This is an alert
+    </div>
+    <div class="spinner-border text-success"></div>
+    <h2>Progress bar</h2>
+    <div class="progress" style="height:30px">
+      <div class="progress-bar bg-danger" style="width:70%;height:30px">70%</div>
+    </div>
+    <br><br>
+    <button type="button" class="btn btn-primary">Blue Button</button>
+    <br>
+    <br>
+    <a href="#" class="btn btn-primary">Button Link</a>
+    <div class="btn btn-primary">Div Button</div>
+
+    <h1>Group of Cards</h1>
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <img class="card-img-top"
+            src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcT4fLu-_Bb6BDTrK3Omfifyy7iPIdkohCB6rAS8HIo6iinAGNSU0qqAzMvjYRbRHHZtJzc-gXSjYtEnik1jU-ci2NvS4HOq9Ml94CwJVPY&usqp=CAE"
+            alt="">
+          <div class="card-body">
+            <h4 class="card-title">Card Header 3</h4>
+            <div class="card-text">Card Body text</div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <img class="card-img-top"
+            src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcT4fLu-_Bb6BDTrK3Omfifyy7iPIdkohCB6rAS8HIo6iinAGNSU0qqAzMvjYRbRHHZtJzc-gXSjYtEnik1jU-ci2NvS4HOq9Ml94CwJVPY&usqp=CAE"
+            alt="">
+          <div class="card-body">
+            <h4 class="card-title">Card Header 3</h4>
+            <div class="card-text">Card Body text</div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <img class="card-img-top"
+            src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcT4fLu-_Bb6BDTrK3Omfifyy7iPIdkohCB6rAS8HIo6iinAGNSU0qqAzMvjYRbRHHZtJzc-gXSjYtEnik1jU-ci2NvS4HOq9Ml94CwJVPY&usqp=CAE"
+            alt="">
+          <div class="card-body">
+            <h4 class="card-title">Card Header 3</h4>
+            <div class="card-text">Card Body text</div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <img class="card-img-top"
+            src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcT4fLu-_Bb6BDTrK3Omfifyy7iPIdkohCB6rAS8HIo6iinAGNSU0qqAzMvjYRbRHHZtJzc-gXSjYtEnik1jU-ci2NvS4HOq9Ml94CwJVPY&usqp=CAE"
+            alt="">
+          <div class="card-body">
+            <h4 class="card-title">Card Header 3</h4>
+            <div class="card-text">Card Body text</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="accordion" class="col-12 mb-4">
+
+        <div class="card">
+          <div class="card-header">
+            <a class="card-link" data-toggle="collapse" href="#collapseOne">
+              Collapsible Group Item #1
+            </a>
+          </div>
+          <div id="collapseOne" class="collapse show" data-parent="#accordion">
+            <div class="card-body">
+              Lorem ipsum..1
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <a class="collapsed card-link" data-toggle="collapse" href="#collapseTwo">
+              Collapsible Group Item #2
+            </a>
+          </div>
+          <div id="collapseTwo" class="collapse" data-parent="#accordion">
+            <div class="card-body">
+              Lorem ipsum..2
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <a class="collapsed card-link" data-toggle="collapse" href="#collapseThree">
+              Collapsible Group Item #3
+            </a>
+          </div>
+          <div id="collapseThree" class="collapse" data-parent="#accordion">
+            <div class="card-body">
+              Lorem ipsum..3
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <a class="collapsed card-link" data-toggle="collapse" href="#collapseFour">
+              Collapsible Group Item #4
+            </a>
+          </div>
+          <div id="collapseFour" class="collapse" data-parent="#accordion">
+            <div class="card-body">
+              Lorem ipsum..4
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <h2>Forms </h2>
+      <div class="container">
+
+        <div class="form-group">
+          <label>First Name</label>
+          <input type="text" class="form-control" id="fName" placeholder="John Do">
+        </div>
+        <div class="form-group">
+          <label >Example select</label>
+          <select class="form-control" id="ddl1">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label >Example multiple select</label>
+          <select multiple class="form-control" id="exampleFormControlSelect2">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label >Example textarea</label>
+          <textarea class="form-control" id="ggg" rows="6"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-secondary">Cancel</button>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+
+</body>
+
+</html>
