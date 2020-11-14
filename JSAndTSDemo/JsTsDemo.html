@@ -4,21 +4,35 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JS and TS Demo</title>
-  <style>
-
-  </style>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  
 </head>
 <body>
 
-  <div>
-    <h1>JavaScript and TypeScript Demo</h1>
-    <div>
-      <button onclick="doSomething ()">Click Me</button>
+  <div class="container">
+    <h1 id="pageHeader">JavaScript and TypeScript Demo</h1>
+    <div class="progress" style="height:20px">
+      <div id="progresss" class="progress-bar" style="width:1%;height:20px">1%</div>
     </div>
+    <div>
+      <div class="form-group">
+        <label for="number1">Starting Number</label>
+        <input type="number" class="form-control" placeholder="Enter Number 1" id="number1">
+      </div>
+      <div class="form-group">
+        <label for="number2">Ending Number</label>
+        <input type="number" class="form-control" placeholder="Enter Number 2" id="number2">
+      </div>
+      <button class="btn btn-primary" id="clickMeButton" onclick="generatePrime()">Generate Prime</button>
+      <button class="btn btn-secondary" id="clearButton" onclick="clearResult()">Clear Result</button>
+    </div>
+    <div id="result"></div>
     
   </div>  
 
+  <script src="./custum1.js"></script>
   <script src="./custom.js"></script>
+  
   
 </body>
 </html>

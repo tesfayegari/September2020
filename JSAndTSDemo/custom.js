@@ -73,3 +73,37 @@ for(var s of students){  //ECMAScript 6
 }
 console.log('Advanced Feature of Loops of Array');
 students.forEach(s => console.log(s));
+
+//2, 3, 5, 7, 11, 13, 17, 19, 23....
+ //if number p % anyNumber different from p or 1 == 0 it is not a  prime
+ //101/2, 101/3, 101/4,... 101/100 has to be different from zero
+ // p/n where n is ween 2 and p-1
+
+ console.log('Prime numbers between 100 and 200 are:')
+ for(var i = 100; i< 1000; i++){
+   if(isPrime(i)){
+     console.log(i);
+   }
+ }
+ 
+ var dog = {
+   name: 'Puppy',
+   dob: '10/10/2017',
+   height: '10ft'
+ }
+ var cat={
+   
+ }
+ var tesfaye = {
+   fullName: 'Tesfaye Gari',
+   DOB: '3/3/2000',
+   Phone: '571-222-2222',
+   email: 'test@email.com',
+   pets: [dog, 'Cats'],
+   sayName: function () {return 'Hi, my name is : ' + this.fullName;}
+
+ }
+
+ var person2 = {
+
+ }
