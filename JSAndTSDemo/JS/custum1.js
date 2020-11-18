@@ -5,6 +5,20 @@
 //  return value; //optional
 // }
 
+//document ready 
+$(document).ready(function(){
+  //Once page loaded 
+  $('#generateButton').click(function(){
+    generatePrime();
+  });
+  $('#clearButton').click(function(){
+    clearResult();
+  });
+
+});
+//end of document ready
+
+
 function isPrime(x){
   for(var n = 2; n < x; n++){
     if(x % n == 0){
@@ -31,10 +45,14 @@ function generatePrime(){
     document.getElementById('progresss').innerText = Math.ceil(i/end*100) + '%';
   }
 
+  document.getElementById('progresss').style.width = Math.ceil(i/end*100) + '%';
+  document.getElementById('progresss').innerText = Math.ceil(i/end*100) + '%';
   //display the result 
   document.getElementById('result').innerHTML = result;
 }
 
 function clearResult() {
   document.getElementById('result').innerHTML = '';
+  document.getElementById('progresss').style.width = '1%';
+  document.getElementById('progresss').innerText = '0%';
 }
