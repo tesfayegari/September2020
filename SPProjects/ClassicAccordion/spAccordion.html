@@ -46,7 +46,7 @@
 
   function getListItems(listName) {
     var siteUrl = _spPageContextInfo.webAbsoluteUrl;
-    var apiUrl = siteUrl + "/_api/web/lists/getbytitle('" + listName + "')/items";
+    var apiUrl = siteUrl + "/_api/web/lists/getbytitle('" + listName + "')/items?$filter=Active ne false";
 
     return $.ajax({
       url: apiUrl,
