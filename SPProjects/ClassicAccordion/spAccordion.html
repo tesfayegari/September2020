@@ -1,0 +1,66 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<div id="myAccorodion" class="container-fluid mt-5">
+  <h2>Accorion is going to be displaying here</h2>
+</div>
+
+<script>
+  $(document).ready(function () {
+    //Once the page is fully loaded 
+    getListItems('AccordionDemo')
+      .then(function(response){
+        //success area 
+        console.log('Data coming from sharePoint is ', response);
+        var items = response.d.results; //items 
+        var myHtml = '';
+        for(var index in items){
+          console.log(items[index].Title, items[index].Description);
+          // myHtml += '<li>' + items[index].Title + '</li>';
+          myHtml += `
+          <div class="card">
+            <div class="card-header">
+              <a class="collapsed card-link" data-toggle="collapse" href="#collapse${index}">
+                ${items[index].Title}
+              </a>
+            </div>
+            <div id="collapse${index}" class="collapse" data-parent="#myAccorodion">
+              <div class="card-body">
+                ${items[index].Description}
+              </div>
+            </div>
+          </div>
+          `;
+
+        }// end of loop 
+
+        $('#myAccorodion').html(myHtml);
+        //end of success area
+      }, 
+        function(error){console.error('Ooops error occured during ajax call', error);});
+
+    //end of page load 
+  });
+
+  function getListItems(listName) {
+    var siteUrl = _spPageContextInfo.webAbsoluteUrl;
+    var apiUrl = siteUrl + "/_api/web/lists/getbytitle('" + listName + "')/items";
+
+    return $.ajax({
+      url: apiUrl,
+      method: 'GET',
+      headers: { "Accept": "application/json; odata=verbose" }
+    });
+
+  }
+
+  // function getData(apiUrl) {
+  //   return $.ajax({
+  //     url: apiUrl,
+  //     method: 'GET',
+  //     headers: { "Accept": "application/json; odata=verbose" }
+  //   });
+  // }
+</script>

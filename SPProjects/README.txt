@@ -34,3 +34,10 @@ https://yourtenant.sharepoint.com/sites/sep2020classic/_api/web/lists/getbytitle
 
 To read SharePoint list items in AccordionDemo list above 
 https://yourtenant.sharepoint.com/sites/sep2020classic/_api/web/lists/getbytitle('AccordionDemo')/items
+
+Question: I have SharePoint List called Employee and it has items and I want to pull only 
+         Title, LastName, Email and Department of all items 
+https://yourtenant.sharepoint.com/sites/sep2020classic/_api/web/lists/getbytitle('Employee')/items?$select=Title,LastName,Email,Department
+Note: By default sharepoint returns only 100 items, if you want all use $top odata 
+Example 
+https://yourtenant.sharepoint.com/sites/sep2020classic/_api/web/lists/getbytitle('Employee')/items?$select=Id,Title,LastName,Email,Department&$top=2000
