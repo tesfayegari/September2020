@@ -7,29 +7,54 @@ import {
 import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
 import { PropertyFieldListPicker, PropertyFieldListPickerOrderBy } from '@pnp/spfx-property-controls/lib/PropertyFieldListPicker';
 import { SPHttpClient, SPHttpClientResponse } from "@microsoft/sp-http";
+import { SPComponentLoader } from "@microsoft/sp-loader";
 
 
 export interface ISpEmployeesWebPartProps {
   description: string;
   list: string;// | string[]; // Stores the list ID(s)
-  nomItems: number;
+  numItems: number;
+  image: string;
+  detail: string;
+  name: string;
 }
 
 export default class SpEmployeesWebPart extends BaseClientSideWebPart<ISpEmployeesWebPartProps> {
 
+  defaultImage = 'https://www.w3schools.com/bootstrap4/img_avatar3.png';
   public render(): void {
-    this.domElement.innerHTML = `
-        <h3>Under Construction </h3>
-        <p>Description value is ${this.properties.description}</p>
-        <p>List value is ${this.properties.list}</p>
-          `;
-    let max = this.properties.nomItems ? this.properties.nomItems : 5;
-    this.properties.list &&
+    SPComponentLoader.loadCss("https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css");
+    
+    let max = this.properties.numItems ? this.properties.numItems : 5;
+    this.properties.list ?
       this._getItemsDataByGUID(this.properties.list, max)
         .then(response => {
           console.log('data is ', response);
+          let items = response.value;
+
+          let myHtml = `<div class ="container">
+                          <h2>Items from Selected List are: </h2>
+                          `;
+
+          for(let item of items){
+            let image = item[this.properties.image];// ? item[this.properties.image] : this.defaultImage;
+            myHtml += `           
+            <div class="card" style="width:400px">
+              ${image ? `<img class="card-img-top" src="${image}" alt="Card image" style="width:100%">` :''}
+              <div class="card-body">
+                <h4 class="card-title">${item[this.properties.name]}</h4>
+                <p class="card-text">${item[this.properties.detail]}</p>
+                <a href="#" class="btn btn-primary">See Profile</a>
+              </div>
+            </div>
+                `;
+          }
+
+          this.domElement.innerHTML = myHtml + '</div>';
+
         },
-          error => { console.error('Oops error occured', error); })
+          error => { console.error('Oops error occured', error); }) :
+           this.domElement.innerHTML = '<h2 style="color:red">Please Configure Your webpart</h2>';
   }
 
   private _getItemsDataByName(listName: string, max: number = 5): Promise<any> {
@@ -85,12 +110,29 @@ export default class SpEmployeesWebPart extends BaseClientSideWebPart<ISpEmploye
                   deferredValidationTime: 0,
                   key: 'listPickerFieldId',
                 }),
-                PropertyPaneSlider('nomItems', {
+                PropertyPaneSlider('numItems', {
                   label: 'Number of Items to Display',
                   min: 1,
                   max: 100,
                   value: 5
                 })
+              ]
+            },
+            {
+              groupName: 'Column Mapping',
+              groupFields: [
+                PropertyPaneTextField('image', {
+                  label: 'Image Field',
+                  description: 'Make sure your List has the Column'
+                }),
+                PropertyPaneTextField('detail', {
+                  label: 'Detail Field',
+                  description: 'Make sure your List has the Column'
+                }),
+                PropertyPaneTextField('name', {
+                  label: 'Name Field',
+                  description: 'Make sure your List has the Column'
+                }),
               ]
             }
           ]
