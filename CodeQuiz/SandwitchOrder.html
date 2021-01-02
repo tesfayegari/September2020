@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sandwitch Shop</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+
+  <div class="container mt-5" id="sandwichShop">
+    <div class="row" id="sandwitchesRow">
+      <div class="col-10">
+        <div class="form-group">
+          <select class="form-control" id="sandwiches">
+            <option selected disabled>Select Sandwich...</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-2">
+        <div class="form-group">
+          <input type="number" class="form-control" id="quantity" placeholder="Quantity" min="1">
+        </div>
+      </div>
+    </div>
+    <div class="row mb-5" id="add-minus-buttonsRow">
+      <div class="col">
+        <button type="button" class="btn btn-primary" id="addButton">+</button>
+        <button type="button" class="btn btn-primary" id="minusButton">-</button>
+      </div>
+    </div>
+    <div class="row" id="tableRow">
+      <div class="col">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Sandwich Name</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody id="orders">
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="row mt-5" id="totalCostRow">
+      <div class="col-8">
+        <div class="card bg-primary text-white">
+          <div class="card-body">Total Cost</div>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="card">
+          <div class="card-body" id="totalCost">$0</div>
+        </div>
+      </div>
+    </div>
+    <button id="submitButton" type="button" class="btn btn-primary mb-2 mt-5">Submit</button>
+  </div>
+
+
+  <script>
+    $(document).ready(function () {
+      //after page load 
+      //event Binding 
+      var orders = [];//empty
+      var sandwiches = null;
+      //add button
+      $("#addButton").click(function () {
+        console.log('Add button clicked');
+        //add click code goes here
+        //variable for sandwitch and quanity 
+        var sandwitch = $('#sandwiches').val();
+        var quanity = $('#quantity').val();
+
+        if (sandwitch == null) {
+          alert('Please select Sandwich!');
+          return;
+        }
+        if (quanity == "") {
+          alert('Please Enter Quantity!');
+          return;
+        }
+        // add rows to the table 
+        var s = getSandwich(sandwitch);
+        orders.push({ sandiwtch: s.Title, quanity: quanity * 1, price: s.Price, total: quanity * s.Price });//add to array
+        console.log('Orders are ', orders);
+        tableOrders();
+
+      });//end of add button
+      //minus button 
+      $("#minusButton").click(function () {
+        console.log('Munus button clicked');
+        //minus click code goes here
+        orders.pop();//remove from array
+        console.log('Orders are ', orders);
+        tableOrders();
+      });//end of minus button 
+      $("#submitButton").click(function () {
+        console.log('Submit button clicked');
+        //button click code goes here
+        //code to create list items in Sandwich order goes here
+
+
+        //end of your code
+        orders = [];
+        tableOrders();
+      });
+      //build the sadwich drop down 
+      getListItems("Sandwitches").then(function (response) {
+        sandwiches = response.d.results;
+        console.log(sandwiches);
+        let sandwichDropdown = '<option selected disabled>Select Sandwich...</option>';
+        for (let item of sandwiches) {
+          sandwichDropdown += `<option value="${item.ID}">${item.Title}</option>`
+        }
+        $('#sandwiches').html(sandwichDropdown);
+
+      }, function (error) { console.error('Oops error occured', error); })
+
+      function getSandwich(sandwitch) {
+        for (let s of sandwiches) {
+          if (s.ID == sandwitch)
+            return s;
+        }
+        return 0;
+      }
+
+      //Create a table from orders 
+      function tableOrders() {
+        let rowHtml = '';
+        let totalCost = 0;
+        for (let order of orders) {
+          rowHtml += `
+            <tr>
+              <td>${order.sandiwtch}</td>
+              <td>$${order.price}</td>
+              <td>${order.quanity}</td>
+              <td>$${order.total}</td>
+            </tr>
+            `;
+          totalCost += order.total;
+        }
+        $('#orders').html(rowHtml);
+        $('#totalCost').html('$' + totalCost);
+
+      }
+
+
+      function getListItems(listName) {
+        var siteUrl = _spPageContextInfo.webAbsoluteUrl;
+        var apiUrl = siteUrl + "/_api/web/lists/getbytitle('" + listName + "')/items";
+        return $.ajax({
+          url: apiUrl,
+          method: 'GET',
+          headers: { "Accept": "application/json; odata=verbose" }
+        });
+
+      }
+
+
+      function createItem(listName, data) {
+        var url = _spPageContextInfo.webAbsoluteUrl + "/_api/web/lists/getbytitle('" + listName + "')/items";
+        var jsonData = JSON.stringify(data);
+        return $.ajax({
+          url: url,
+          method: "POST",
+          headers: {
+            'accept': 'application/json;odata=verbose',
+            "X-RequestDigest": $("#__REQUESTDIGEST").val(),
+            'content-type': 'application/json;odata=verbose',
+          },
+          data: jsonData
+        });
+      }
+
+    });
+  </script>
+
+</body>
+
+</html>
